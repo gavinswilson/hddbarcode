@@ -1,6 +1,7 @@
  
 import cv2 # only needed for testing 
 from pyzbar.pyzbar import decode 
+import platform
    
 # Read barcodes
 def BarcodeReader(image): 
@@ -26,9 +27,45 @@ def BarcodeReader(image):
     cv2.imwrite(filename, img)           
     cv2.imshow("Image", img)
     cv2.waitKey(0) 
-    cv2.destroyAllWindows() 
-  
+    # cv2.destroyAllWindows() 
+    print("Done")
+
+def takePicture(image):
+    for x in range(5):
+        cam_port = x
+        cam = cv2.VideoCapture(cam_port) 
+        if cam is None or not cam.isOpened():
+            print('Warning: unable to open video source: ', x)
+    
+    
+    result, image = cam.read() 
+    if result: 
+
+        cv2.imshow("GeeksForGeeks", image) 
+        cv2.imwrite("GeeksForGeeks.png", image)  
+        cv2.waitKey(0) 
+        cv2.destroyWindow("GeeksForGeeks") 
+    
+    else: 
+        print("No image detected. Please! try again") 
+
+def checkOS():
+    print(platform.platform())
+    print(platform.system())
+    print(platform.release())
+    print(platform.version())
+    print(platform.architecture())
+    print(platform.machine())
+    print(platform.uname())
+    print(platform.node())
+    return "chromebook"
+
 if __name__ == "__main__": 
   # Take the image from user 
-    image="img4.jpg"
+    image="img6.jpg"
+    OS = checkOS()
+    if OS == "chromebook":
+        image = "img4.jpg"
+    else:
+        takePicture(image)
     BarcodeReader(image) 
