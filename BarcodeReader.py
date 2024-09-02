@@ -50,15 +50,20 @@ def takePicture(image):
         print("No image detected. Please! try again") 
 
 def checkOS():
-    print(platform.platform())
-    print(platform.system())
-    print(platform.release())
-    print(platform.version())
-    print(platform.architecture())
-    print(platform.machine())
-    print(platform.uname())
-    print(platform.node())
-    return "chromebook"
+    # print(platform.platform())
+    # print(platform.system())
+    # print(platform.release())
+    # print(platform.version())
+    # print(platform.architecture())
+    # print(platform.machine())
+    # print(platform.uname())
+    # print(platform.node())
+    if (platform.node() == "penguin"):
+        print("Chromebook detected - no webcam - load image\n")
+        return "chromebook"
+    else:
+        return "unknown"
+    
 
 if __name__ == "__main__": 
   # Take the image from user 
@@ -66,6 +71,10 @@ if __name__ == "__main__":
     OS = checkOS()
     if OS == "chromebook":
         image = "img4.jpg"
+        BarcodeReader(image) 
+    elif (OS == "unknown"):
+        print("Unknown OS - Terminating")    
     else:
         takePicture(image)
-    BarcodeReader(image) 
+        BarcodeReader(image) 
+    
