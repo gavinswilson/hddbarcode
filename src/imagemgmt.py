@@ -7,9 +7,9 @@ def takePicture(image, cam_num):
         if cam is None or not cam.isOpened():
             print('Warning: unable to open video source: ', x)
     
-    if cam_num == 999:
+    if cam_num == -1:
         print("incorrect camera allocated")
-        
+
     result, image = cam.read() 
     if result: 
 
