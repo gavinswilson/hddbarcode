@@ -2,6 +2,8 @@ import imagemgmt
 import os_mgmt
 import barcodereader
 import argparser
+from PIL import Image
+
 from pprint import pprint
 
 if __name__ == "__main__": 
@@ -59,3 +61,6 @@ if __name__ == "__main__":
     if cam_num != -1: imagemgmt.takePicture(inimage, cam_num)
 
     barcodereader.readbarcode(inimage, outimage, debug=debuglevel) 
+
+
+   
