@@ -4,10 +4,10 @@ from pyzbar.pyzbar import decode
 import os_mgmt
    
 # Read barcodes
-def readbarcode(image): 
+def readbarcode(inputimage, outputimage): 
 
-    if (os_mgmt.checkFileExists(image)):
-        img = cv2.imread(image)  
+    if (os_mgmt.checkFileExists(inputimage)):
+        img = cv2.imread(inputimage)  
         detectedBarcodes = decode(img) 
             
         if not detectedBarcodes: 
@@ -24,8 +24,8 @@ def readbarcode(image):
                 if barcode.data!="": 
                     print(barcode.data) 
                     print(barcode.type) 
-        filename = "img4a.jpg"
-        cv2.imwrite(filename, img)           
+        #filename = "../images/img4a.jpg"
+        cv2.imwrite(outputimage, img)           
         cv2.imshow("Image", img)
         cv2.waitKey(0) 
         # cv2.destroyAllWindows() 
