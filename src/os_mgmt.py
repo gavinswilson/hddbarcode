@@ -16,9 +16,11 @@ def checkOS(debug=0):
     else:
         return "unknown"
 
-def checkFileExists(imagefile):
+def checkFileExists(imagefile, debug=0):
     if (os.path.isfile(imagefile)):
-        return 1
+        if debug > 0: print(">> Image found... : ", imagefile)
+        return 0 #returns ok       
     else:
-        return 0
+        if debug > 0: print(">> Image not found... : ", imagefile)
+        return 1 #returns error
     # what do we do if the file doesnt exist?

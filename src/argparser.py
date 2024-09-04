@@ -6,7 +6,7 @@ def setupargs():
     # defining arguments for parser object
     parser.add_argument("-i", "--input", type = str, nargs = 1,
                         metavar = "file_name", default = None,
-                        help = "Opens and reads the specified image file.")
+                        help = "Opens and analyses the specified image file.")
     
     parser.add_argument("-c", "--camera", type = int, nargs = 1,
                         metavar = "cam_num", default = None,

@@ -7,7 +7,7 @@ from pprint import pprint
 # Read barcodes
 def readbarcode(inputimage, outputimage, debug=0): 
 
-    if (os_mgmt.checkFileExists(inputimage)):
+    if (os_mgmt.checkFileExists(inputimage) == 0):
         img = cv2.imread(inputimage)  
         detectedBarcodes = decode(img) 
         print("Analysing image: ", inputimage)    
