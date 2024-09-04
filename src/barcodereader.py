@@ -30,6 +30,6 @@ def readbarcode(inputimage, outputimage, debug=0):
     # cv2.imshow("Image", img)
     # cv2.waitKey(0) 
     # # cv2.destroyAllWindows() 
-    print("\nDone")
-    return detectedBarcodes, 0
+    # print("\nDone")
+    return 0, detectedBarcodes
 

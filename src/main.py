@@ -2,6 +2,7 @@ import imagemgmt
 import os_mgmt
 import barcodereader
 import argparser
+import JSONdata
 from PIL import Image
 from datetime import datetime
 
@@ -61,7 +62,8 @@ if __name__ == "__main__":
     else:
         cam_num = -1
     if debuglevel > 0: print("Camera Number:", cam_num)
-
+    if debuglevel > 0 and cam_num == -1: print("No camera selected")
+    
     ######################################################################
     #get the current OS running with version for compatability
     OS = os_mgmt.checkOS(debug=debuglevel)
@@ -85,11 +87,14 @@ if __name__ == "__main__":
 
     if (availimage == 1 and dupimage == 0): 
         if debuglevel > 0: print("Running barcode analysis....")
-        barcodelist, result = barcodereader.readbarcode(inimage, outimage, debug=debuglevel)
+        result, barcodelist = barcodereader.readbarcode(inimage, outimage, debug=debuglevel)
     else:
         if availimage !=1: print("no image to read, terminating....")
         if dupimage !=0: print("File exists... terminating")
     
-if debuglevel > 0: pprint(barcodelist) 
-if debuglevel > 0: print("barcode analysis result: ", result)
+    ######################################################################
+    # output data to JSON  
+    #if debuglevel > 0: pprint(barcodelist) 
+    result, filename = JSONdata.outputJSON(barcodelist, strdt)
+    if debuglevel > 0: print("data outputted to: ", filename) 
    
